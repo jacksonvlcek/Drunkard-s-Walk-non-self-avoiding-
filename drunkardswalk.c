@@ -11,40 +11,44 @@
 
 int main()
 {
-	
-	int steps;
-	printf("How many steps for this simulation?: ");
-	scanf("%d",&steps);
-	
-	int hfinal = 0, vfinal = 0, num;
-	
-	srand(time(NULL));
-	
-	for (int i=0;i<steps;i++) {
-		num = rand() % 100;
-		//left
-		if (num < 25) {
-			hfinal = hfinal - 1;
+	char rerun = 'y';
+	do {
+		int steps;
+		printf("How many steps for this simulation?: ");
+		scanf("%d",&steps);
+
+		int hfinal = 0, vfinal = 0, num;
+
+		srand(time(NULL));
+
+		for (int i=0;i<steps;i++) {
+			num = rand() % 100;
+			//left
+			if (num < 25) {
+				hfinal = hfinal - 1;
+			}
+			//right
+			if (num >= 25 && num < 50) {
+				hfinal = hfinal + 1;
+			}
+			//up
+			if (num >= 50 && num < 75) {
+				vfinal = vfinal + 1;
+			}
+			//down
+			if (num >=75 && num <= 100) {
+				vfinal = vfinal - 1;
+			}
 		}
-		//right
-		if (num >= 25 && num < 50) {
-			hfinal = hfinal + 1;
-		}
-		//up
-		if (num >= 50 && num < 75) {
-			vfinal = vfinal + 1;
-		}
-		//down
-		if (num >=75 && num <= 100) {
-			vfinal = vfinal - 1;
-		}
-	}
-	
-	float dpmt = sqrt(pow(hfinal,2) + pow(vfinal,2));
-	
-	printf("\n\nThe horizontal value was %d and the vertical value was %d",hfinal,vfinal);
-	printf("\n\nThe displacement was %f",dpmt);
-	
+
+		float dpmt = sqrt(pow(hfinal,2) + pow(vfinal,2));
+
+		printf("\n\nThe horizontal value was %d and the vertical value was %d",hfinal,vfinal);
+		printf("\n\nThe displacement was %f",dpmt);
+		printf("\n\nRun again? (y/n):");
+		scanf(" %c",&rerun);
+
+	} while (rerun == 'y');
 	return 0;
 }
 
